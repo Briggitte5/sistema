@@ -1,3 +1,5 @@
+<body style="background-image:url(https://image.freepik.com/vector-gratis/grupo-hombre_1284-12615.jpg)">
+  
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -13,7 +15,7 @@
 </div>
 @endif
 
-<a href="{{ url('empleado/create') }}" class="btn btn-success"> Registrar nuevo empleado</a>
+<a href="{{ url('tarea/create') }}" class="btn btn-success"> Nueva Tareas</a>
 <br/>
 <br/>
 <table class="table table-light">
@@ -21,37 +23,34 @@
    <thead class="thead-light">
       <tr>
         <th>#</th>
-        <th>Foto</th>
         <th>Nombre</th>
-        <th>Primer Apellido</th>
-        <th>Segundo Apellido</th>
-        <th>Correo</th>
+        <th>Puesto</th>
+        <th>Función</th>
+        <th>Empleado</th>
+        <th>Sección</th>
+        <th>Trabajo Id</th>
         <th>Acciones</th>
       </tr>
     </thead>
 
     <tbody>
-    @foreach($empleados as $empleado )
+    @foreach($tareas as $tarea )
      <tr>
-       <td>{{ $empleado->id }}</td>
-
-       <td>
-       <img class="img-thumbnail img-fluid" style="width: 50px; height: 50px;" src="{{ asset('storage').'/'.$empleado->Foto }}" alt="">
-       </td>
-
-
-       <td>{{ $empleado->Nombre }}</td>
-       <td>{{ $empleado->PrimerApellido }}</td>
-       <td>{{ $empleado->SegundoApellido }}</td>
-       <td>{{ $empleado->Correo }}</td>
+       <td>{{ $tarea->id }}</td>
+       <td>{{ $tarea->Nombre }}</td>
+       <td>{{ $tarea->Puesto }}</td>
+       <td>{{ $tarea->Funcion }}</td>
+       <td>{{ $tarea->Empleado }}</td>
+       <td>{{ $tarea->Seccion }}</td>
+       <td>{{ $tarea->trabajo_id }}</td>
        <td> 
        
-       <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-warning">
+       <a href="{{ url('/tarea/'.$tarea->id.'/edit') }}" class="btn btn-warning">
             Editar
        </a>
         | 
        
-      <form action="{{ url('/empleado/'.$empleado->id ) }}"class="d-inline" method="post">
+      <form action="{{ url('/tarea/'.$tarea->id ) }}"class="d-inline" method="post">
       @csrf
       {{ method_field('DELETE') }}
       <input class="btn btn-danger" type="submit" onclick="return confirm ('¿Quieres borrar?')"
@@ -65,6 +64,7 @@
     </tbody>
 
 </table>
-{!! $empleados->links()!!}
+{!! $tareas->links()!!}
 </div>
 @endsection
+</body>
